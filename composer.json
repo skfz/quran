@@ -1,0 +1,34 @@
+{
+    "name": "skfz/quran",
+    "description": "Simple Quran laravel package",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Skfz\\Quran\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sarfaraz",
+            "email": "skfz.14@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "michaelachrisco/readonly": "dev-main"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5.x-dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skfz\\Quran\\Providers\\ReaderServiceProvider"
+            ],
+            "aliases": {
+                "Reader": "Skfz\\Quran\\Facades\\Reader"
+            }
+        }
+    }
+}
