@@ -15,14 +15,22 @@ php artisan db:seed QuranSeeder
 ## How to use
 The data is available using the Skfz\Quran\Reader facade. Its formatted as an associative array
 ```
+use Skfz\Quran\Facades\Reader;
+
 // Get list of Juz(Groups)
-Reader::getGroups()
+Reader::getGroups();
+
+// Get Juz(Group) details by Juz number
+Reader::getGroupById($groupId);
 
 // Get list of Surahs(Chapeters)
-Reader::getChapters()
+Reader::getChapters();
+
+// Get Surah(Chapter) details by Surah number
+Reader::getChapterById($chapterId);
 
 // Get list of Surahs in Juz
-Reader::getChaptersInGroup()
+Reader::getChaptersInGroup();
 
 // Get verses of a Surah (default number of verses returned 40)
 Reader::getVersesByChapter($chapterId, $numberOfverses);
