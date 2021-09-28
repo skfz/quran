@@ -14,9 +14,19 @@ class ReaderController extends Controller {
         return Group::get()->toArray();
     }
 
+    public function getGroupById($groupId) {
+        
+        return Group::find($groupId)->toArray();
+    }
+
     public function getChapters() {
         
         return Chapter::get()->toArray();
+    }
+
+    public function getChapterById($chapterId) {
+
+        return Chapter::find($chapterId)->toArray();
     }
 
     public function getChaptersInGroup($groupId) {

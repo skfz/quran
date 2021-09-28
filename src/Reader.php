@@ -13,18 +13,25 @@ class Reader {
     CONST CHAPTER_MAX = 114;
 
     public function __construct() {
-        $this->reader = new ReaderController;
+        if (!($this->reader instanceof ReaderController)) {
+            $this->reader = new ReaderController;
+        }
     }
 
     public function getGroups() {
         return $this->reader->getGroups();
     }
 
+    public function getGroupById($groupId) {
+
+        $this->_validateId($groupId, self::GROUP_MAX);
+
+        return $this->reader->getGroupById($groupId);
+    }
+
     public function getChaptersInGroup($groupId) {
         
-        if (!intval($groupId) || $groupId < 0 || $groupId > self::GROUP_MAX) {
-            $groupId = 1;
-        }
+        $this->_validateId($groupId, self::GROUP_MAX);
 
         return $this->reader->getChaptersInGroup($groupId);
     }
@@ -33,11 +40,16 @@ class Reader {
         return $this->reader->getChapters();
     }
 
+    public function getChapterById($chapterId) {
+        
+        $this->_validateId($chapterId, self::CHAPTER_MAX);
+
+        return $this->reader->getChapterById($chapterId);
+    }
+
     public function getVersesByChapter($chapterId, $paginate=40) {
 
-        if (!intval($chapterId) || $chapterId < 0 || $chapterId > self::CHAPTER_MAX) {
-            $chapterId = 1;
-        }
+        $this->_validateId($chapterId, self::CHAPTER_MAX);
 
         return $this->reader->getVersesByChapter($chapterId, $paginate);
     }
@@ -49,5 +61,12 @@ class Reader {
         }
 
         return $this->reader->getVersesByGroup($groupId, $paginate);
+    }
+
+    private function _validateId(&$id, $max) {
+        
+        if (!intval($id) || $id < 0 || $id > $max) {
+            $id = 1;
+        }
     }
 }
